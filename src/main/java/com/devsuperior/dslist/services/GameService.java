@@ -3,6 +3,7 @@ package com.devsuperior.dslist.services;
 import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
 import com.devsuperior.dslist.entities.Game;
+import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repositories.GameRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,4 +30,13 @@ public class GameService { // O serviço devolve um DTO
         List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList(); // Transforma uma lista de Games em uma de GameDTO
         return dto;
     }
+
+    @Transactional
+    public List<GameMinDTO> findByList(Long listId) {
+        List<GameMinProjection> result = gameRepository.searchByList(listId); // Busca todos os games do BD e coloca numa lista
+        List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList(); // Transforma uma lista de Games em uma de GameDTO
+        return dto;
+    }
+
+
 }

@@ -18,10 +18,20 @@ import java.util.List;
 public class GameListController { // Porta de entrada do back-end (O que disponibiliza/implementa a API)
     @Autowired
     private GameListService gameListService; // Injetando um Service no Controller
+    @Autowired
+    private GameService gameService;
 
     @GetMapping // Verbo HTTP (endpoint para buscar)
     public List<GameListDTO> findAll() {
         List<GameListDTO> result = gameListService.findAll();
         return result;
     }
+
+    @GetMapping(value = "/{listId}/games") // Verbo HTTP (endpoint para buscar)
+    public List<GameMinDTO> findByList(@PathVariable Long listId) {
+        List<GameMinDTO> result = gameService.findByList(listId);
+        return result;
+    }
+
+
 }
