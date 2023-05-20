@@ -8,3 +8,4 @@ Projeto de umma lista de jogos ranqueadas, onde o próprio usuário pode alterar
 * Maven
 * PostgreSQL
 ## Modelo de domínio
+![modelo](dslist-model.png)
